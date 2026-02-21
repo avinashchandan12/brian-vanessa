@@ -6,6 +6,7 @@ const hotels = [
     contact: '+961 (call to book)',
     link: 'https://terre-brune-hotel.beirut-hotel.net',
     rooms: ['Deluxe Room', 'Executive Room', 'Majestic Room', 'Captain Suite', 'Terrebrune Suite'],
+    image: '/images/terre-brune.png',
   },
   {
     name: 'InterContinental Mzaar',
@@ -14,6 +15,7 @@ const hotels = [
     contact: 'Call or book online',
     link: 'https://www.ihg.com',
     rooms: null,
+    image: '/images/intercontinental.jpg',
   },
   {
     name: 'Faqra Club Kfardebian',
@@ -22,6 +24,7 @@ const hotels = [
     contact: 'Call or book online',
     link: 'https://www.faqraclub.com',
     rooms: null,
+    image: '/images/faqra.png',
   },
 ];
 
@@ -64,6 +67,9 @@ const HotelsSection = () => {
                 border: '1px solid rgba(201,169,110,0.3)',
               }}
             >
+              <div className="w-full h-40 mb-4 overflow-hidden">
+                <img src={hotel.image} alt={hotel.name} className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-heading text-cream text-sm mb-3 tracking-wider">{hotel.name}</h3>
               <p className="font-body font-light text-cream/80 text-sm leading-relaxed mb-3">
                 {hotel.description}

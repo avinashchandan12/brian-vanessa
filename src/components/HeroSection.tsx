@@ -5,7 +5,7 @@ const HeroSection = () => {
   const [flipped, setFlipped] = useState(false);
 
   useEffect(() => {
-    const target = new Date('2026-07-11T17:30:00').getTime();
+    const target = new Date('2026-07-11T17:45:00').getTime();
     const update = () => {
       const now = Date.now();
       const diff = Math.max(0, target - now);
