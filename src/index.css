@@ -2,95 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --cream: 37 33% 92%;
+    --ivory: 37 27% 89%;
+    --sage: 103 13% 49%;
+    --forest: 133 16% 27%;
+    --olive-light: 103 16% 65%;
+    --warm-brown: 22 29% 38%;
+    --dusty-rose: 18 20% 69%;
+    --parchment: 30 18% 78%;
+    --ink: 0 0% 17%;
+    --gold: 37 38% 61%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --background: var(--cream);
+    --foreground: var(--ink);
+    --card: var(--ivory);
+    --card-foreground: var(--ink);
+    --popover: var(--cream);
+    --popover-foreground: var(--ink);
+    --primary: var(--sage);
+    --primary-foreground: 37 33% 92%;
+    --secondary: var(--ivory);
+    --secondary-foreground: var(--forest);
+    --muted: var(--parchment);
+    --muted-foreground: var(--warm-brown);
+    --accent: var(--dusty-rose);
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--parchment);
+    --input: var(--parchment);
+    --ring: var(--sage);
+    --radius: 0px;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: var(--forest);
+    --sidebar-foreground: var(--cream);
+    --sidebar-primary: var(--sage);
+    --sidebar-primary-foreground: var(--cream);
+    --sidebar-accent: var(--olive-light);
+    --sidebar-accent-foreground: var(--forest);
+    --sidebar-border: var(--parchment);
+    --sidebar-ring: var(--gold);
   }
 }
 
@@ -98,8 +51,165 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Typography utility classes */
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+}
+.font-heading {
+  font-family: 'Cinzel', serif;
+}
+.font-body {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Section label style */
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: hsl(var(--gold));
+}
+
+/* Section heading style */
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Cinzel uppercase spaced */
+.cinzel-spaced {
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+}
+
+/* Cream texture background */
+.bg-cream-texture {
+  background-color: hsl(var(--cream));
+  background-image: url('/images/bg-cream.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Forest background */
+.bg-forest-texture {
+  background-color: hsl(var(--forest));
+  background-image: url('/images/bg-sage.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Noise grain overlay */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fade in animation for scroll */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 500ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(7) { transition-delay: 600ms; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(8) { transition-delay: 700ms; opacity: 1; transform: translateY(0); }
+
+/* Wedding input style */
+.wedding-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid hsl(var(--parchment));
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: hsl(var(--ink));
+  padding: 8px 0;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.wedding-input:focus {
+  border-bottom-color: hsl(var(--sage));
+}
+.wedding-input::placeholder {
+  color: hsl(var(--parchment));
+}
+
+.wedding-input-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(var(--gold));
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Envelope animation */
+@keyframes flap-open {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(-180deg); }
+}
+@keyframes card-slide {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(-20%); opacity: 1; }
+}
+@keyframes envelope-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Music pulse */
+@keyframes music-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Parallax photo */
+.parallax-photo {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+@media (max-width: 768px) {
+  .parallax-photo {
+    background-attachment: scroll;
   }
 }
