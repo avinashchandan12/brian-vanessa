@@ -62,7 +62,7 @@ const EnvelopeAnimation = ({ onComplete }: { onComplete: () => void }) => {
             Vanessa & Brian
           </p>
           <p className="text-gold my-2 text-lg">✦</p>
-          <p className="cinzel-spaced text-ink text-xs">May 17, 2025</p>
+          <p className="cinzel-spaced text-ink text-xs">July 11, 2026</p>
         </div>
       </div>
 

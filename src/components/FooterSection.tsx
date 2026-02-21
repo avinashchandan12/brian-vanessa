@@ -7,16 +7,18 @@ const FooterSection = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('/images/couple4.jpeg')` }}
         />
+        {/* Stronger dark overlay for text readability */}
+        <div className="absolute inset-0 bg-forest/50" />
         <div
           className="absolute inset-0"
-          style={{ boxShadow: 'inset 0 0 120px rgba(0,0,0,0.35)' }}
+          style={{ boxShadow: 'inset 0 0 120px rgba(0,0,0,0.45)' }}
         />
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 z-10">
-          <p className="font-display italic text-cream text-center" style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>
+          <p className="font-display italic text-cream text-center drop-shadow-lg" style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>
             See you there
           </p>
-          <p className="font-heading text-gold text-[10px] tracking-[0.35em] mt-3">
-            VANESSA & BRIAN · MAY 17, 2025
+          <p className="font-heading text-gold text-[10px] tracking-[0.35em] mt-3 drop-shadow-md">
+            VANESSA & BRIAN · JULY 11, 2026
           </p>
         </div>
       </div>

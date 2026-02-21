@@ -2,16 +2,8 @@ import { useState } from 'react';
 
 const RSVPSection = () => {
   const [attending, setAttending] = useState<'yes' | 'no' | null>(null);
-  const [bringingGuest, setBringingGuest] = useState<'yes' | 'no' | null>(null);
-  const [guestCount, setGuestCount] = useState(1);
-  const [guestNames, setGuestNames] = useState<string[]>(['']);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
-
-  const handleGuestCountChange = (count: number) => {
-    setGuestCount(count);
-    setGuestNames(Array(count).fill(''));
-  };
 
   const handleSubmit = () => {
     if (!formData.name || !attending) return;
@@ -26,9 +18,9 @@ const RSVPSection = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('/images/couple1.jpeg')` }}
         />
-        <div className="absolute inset-0" style={{ background: 'rgba(30,40,25,0.55)' }} />
+        <div className="absolute inset-0 bg-forest/60" />
         <h2
-          className="relative z-10 font-display italic font-light text-cream text-center px-8"
+          className="relative z-10 font-display italic font-light text-cream text-center px-8 drop-shadow-lg"
           style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}
         >
           Will you<br />join us?
@@ -36,7 +28,8 @@ const RSVPSection = () => {
       </div>
 
       {/* Right - form */}
-      <div className="w-full lg:w-[50%] bg-cream-texture noise-overlay relative">
+      <div className="w-full lg:w-[50%] relative" style={{ backgroundColor: 'hsl(37, 33%, 92%)' }}>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url('/images/bg-cream.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div className="relative z-10 max-w-md mx-auto px-8 py-16 lg:py-24">
           {submitted ? (
             <div className="text-center fade-section visible">
@@ -48,8 +41,15 @@ const RSVPSection = () => {
           ) : (
             <div className="stagger-children visible">
               <h3 className="font-heading text-warm-brown text-2xl tracking-[0.15em] text-center mb-2">RSVP</h3>
-              <p className="font-body font-light text-ink text-[13px] text-center mb-10">
-                Kindly respond by April 1, 2025
+              <p className="font-body font-light text-ink text-[13px] text-center mb-4 leading-relaxed max-w-sm mx-auto">
+                We would be honored to celebrate with you. Please let us know if you can attend by filling
+                out the form below. Your presence would mean the world to us as we begin this new chapter together.
+              </p>
+              <p className="font-body font-light text-ink/60 text-[12px] text-center mb-4 italic">
+                Please submit a separate form for each guest who will be attending.
+              </p>
+              <p className="font-heading text-gold text-[10px] tracking-[0.2em] text-center mb-10">
+                KINDLY RESPOND BY MAY 1, 2026
               </p>
 
               {/* Attendance */}
@@ -69,7 +69,7 @@ const RSVPSection = () => {
                     JOYFULLY ACCEPTS
                   </button>
                   <button
-                    onClick={() => { setAttending('no'); setBringingGuest(null); }}
+                    onClick={() => setAttending('no')}
                     className={`flex-1 py-3 font-heading text-[11px] tracking-[0.15em] border-2 transition-colors ${
                       attending === 'no'
                         ? 'bg-sage text-cream border-sage'
@@ -81,7 +81,7 @@ const RSVPSection = () => {
                 </div>
               </div>
 
-              {/* Contact fields - always shown */}
+              {/* Contact fields - always shown after choice */}
               {attending && (
                 <>
                   <div className="space-y-6 mb-8">
@@ -125,74 +125,11 @@ const RSVPSection = () => {
                     </div>
                   </div>
 
-                  {/* Guest section - only if attending */}
-                  {attending === 'yes' && (
-                    <div className="mb-8" style={{ transition: 'max-height 0.4s ease, opacity 0.4s ease' }}>
-                      <p className="font-heading text-ink text-[12px] tracking-[0.15em] text-center mb-4">
-                        WILL YOU BE BRINGING A GUEST?
-                      </p>
-                      <div className="flex gap-3 mb-6">
-                        <button
-                          onClick={() => setBringingGuest('yes')}
-                          className={`flex-1 py-3 font-heading text-[11px] tracking-[0.15em] border-2 transition-colors ${
-                            bringingGuest === 'yes'
-                              ? 'bg-sage text-cream border-sage'
-                              : 'border-parchment text-ink hover:border-sage'
-                          }`}
-                        >
-                          YES
-                        </button>
-                        <button
-                          onClick={() => { setBringingGuest('no'); setGuestCount(0); setGuestNames([]); }}
-                          className={`flex-1 py-3 font-heading text-[11px] tracking-[0.15em] border-2 transition-colors ${
-                            bringingGuest === 'no'
-                              ? 'bg-sage text-cream border-sage'
-                              : 'border-parchment text-ink hover:border-sage'
-                          }`}
-                        >
-                          NO
-                        </button>
-                      </div>
-
-                      {bringingGuest === 'yes' && (
-                        <div className="space-y-4">
-                          <div>
-                            <label className="wedding-input-label">NUMBER OF GUESTS</label>
-                            <select
-                              className="wedding-input"
-                              value={guestCount}
-                              onChange={(e) => handleGuestCountChange(Number(e.target.value))}
-                            >
-                              {[1, 2, 3, 4, 5].map((n) => (
-                                <option key={n} value={n}>{n}</option>
-                              ))}
-                            </select>
-                          </div>
-                          {guestNames.map((name, i) => (
-                            <div key={i}>
-                              <label className="wedding-input-label">GUEST {i + 1} NAME</label>
-                              <input
-                                className="wedding-input"
-                                placeholder={`Guest ${i + 1}`}
-                                value={name}
-                                onChange={(e) => {
-                                  const updated = [...guestNames];
-                                  updated[i] = e.target.value;
-                                  setGuestNames(updated);
-                                }}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-
                   <button
                     onClick={handleSubmit}
                     className="w-full bg-warm-brown text-cream font-heading text-sm tracking-[0.2em] uppercase py-4 hover:bg-forest transition-colors"
                   >
-                    SEND WITH LOVE
+                    SUBMIT RSVP
                   </button>
                 </>
               )}

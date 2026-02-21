@@ -1,11 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import EnvelopeAnimation from '@/components/EnvelopeAnimation';
 import HeroSection from '@/components/HeroSection';
-import OurStorySection from '@/components/OurStorySection';
+import WelcomeSection from '@/components/WelcomeSection';
 import DetailsSection from '@/components/DetailsSection';
+import ScheduleSection from '@/components/ScheduleSection';
 import HotelsSection from '@/components/HotelsSection';
 import GalleryBreak from '@/components/GalleryBreak';
 import RSVPSection from '@/components/RSVPSection';
+import FAQSection from '@/components/FAQSection';
 import FooterSection from '@/components/FooterSection';
 import MusicPlayer from '@/components/MusicPlayer';
 
@@ -18,6 +20,7 @@ const Index = () => {
 
   // IntersectionObserver for fade-in sections
   useEffect(() => {
+    if (showEnvelope) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,10 +32,16 @@ const Index = () => {
       { threshold: 0.15 }
     );
 
-    const elements = document.querySelectorAll('.fade-section, .stagger-children');
-    elements.forEach((el) => observer.observe(el));
+    // Small delay to let DOM render
+    const timeout = setTimeout(() => {
+      const elements = document.querySelectorAll('.fade-section, .stagger-children');
+      elements.forEach((el) => observer.observe(el));
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
   }, [showEnvelope]);
 
   return (
@@ -41,11 +50,13 @@ const Index = () => {
 
       <main className={showEnvelope ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}>
         <HeroSection />
-        <OurStorySection />
+        <WelcomeSection />
         <DetailsSection />
+        <ScheduleSection />
         <HotelsSection />
         <GalleryBreak />
         <RSVPSection />
+        <FAQSection />
         <FooterSection />
         <MusicPlayer />
       </main>
