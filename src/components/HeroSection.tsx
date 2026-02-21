@@ -4,7 +4,7 @@ const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, min: 0, sec: 0 });
 
   useEffect(() => {
-    const target = new Date('2025-05-17T00:00:00').getTime();
+    const target = new Date('2026-07-11T17:30:00').getTime();
     const update = () => {
       const now = Date.now();
       const diff = Math.max(0, target - now);
@@ -32,22 +32,28 @@ const HeroSection = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('/images/couple1.jpeg')` }}
         />
-        <div className="absolute inset-0" style={{ background: 'rgba(40,50,35,0.25)' }} />
+        <div className="absolute inset-0 bg-forest/30" />
 
         {/* Bottom-left text */}
         <div className="absolute bottom-8 left-8 z-10">
-          <p className="font-heading text-cream text-[10px] tracking-[0.35em] uppercase">
+          <p className="font-heading text-cream text-[10px] tracking-[0.35em] uppercase drop-shadow-md">
             Vanessa & Brian
           </p>
           <div className="w-16 h-px bg-parchment my-3" />
-          <p className="font-display italic text-cream text-sm">May 17, 2025</p>
+          <p className="font-display italic text-cream text-sm drop-shadow-md">July 11, 2026</p>
         </div>
       </div>
 
       {/* Right panel - cream texture */}
       <div
-        className="w-full lg:w-[40%] min-h-[80vh] lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-center bg-cream-texture noise-overlay relative"
+        className="w-full lg:w-[40%] min-h-[80vh] lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-center relative"
+        style={{ backgroundColor: 'hsl(37, 33%, 92%)' }}
       >
+        {/* Background image with reduced opacity */}
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{ backgroundImage: `url('/images/bg-cream.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        />
         <div className="relative z-10 text-center px-8 py-16 stagger-children visible">
           <h1
             className="font-display italic font-light text-ink"
@@ -70,7 +76,8 @@ const HeroSection = () => {
             {Object.entries(timeLeft).map(([label, val]) => (
               <div
                 key={label}
-                className="border border-parchment bg-ivory/50 w-16 py-3 flex flex-col items-center"
+                className="border border-parchment w-16 py-3 flex flex-col items-center"
+                style={{ backgroundColor: 'hsla(37, 27%, 89%, 0.6)' }}
               >
                 <span className="font-display text-2xl text-ink">{val}</span>
                 <span className="font-heading text-[9px] tracking-[0.2em] uppercase text-gold mt-1">
