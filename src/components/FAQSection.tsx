@@ -3,7 +3,7 @@ import { useState } from 'react';
 const faqs = [
   {
     q: 'When and where is the wedding?',
-    a: 'The wedding will take place on July 11, 2026, at Le Clos de Faqra in Lebanon. The ceremony starts at 5:30 PM.',
+    a: 'The wedding will take place on July 11, 2026, at Le Clos de Faqra in Lebanon. The ceremony starts at 5:45 PM.',
   },
   {
     q: 'What is the dress code?',
