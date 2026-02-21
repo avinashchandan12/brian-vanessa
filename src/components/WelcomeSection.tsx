@@ -21,7 +21,7 @@ const WelcomeSection = () => {
 
       {/* Offset photo */}
       <div className="relative z-10 max-w-[680px] mx-auto px-8 mt-12">
-        <div className="ml-auto" style={{ width: 'min(360px, 80%)', transform: 'translateX(40px) rotate(1.5deg)' }}>
+        <div className="mx-auto" style={{ width: 'min(360px, 80%)', transform: 'rotate(1.5deg)' }}>
           <img
             src="/images/couple2.jpeg"
             alt="Vanessa and Brian"

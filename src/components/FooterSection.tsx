@@ -1,23 +1,21 @@
+import dogMartini from '@/assets/dog-martini.png';
+
 const FooterSection = () => {
   return (
     <footer>
-      {/* Photo with overlay text */}
-      <div className="relative w-full" style={{ height: '60vh' }}>
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/images/couple4.jpeg')` }}
-        />
-        {/* Stronger dark overlay for text readability */}
-        <div className="absolute inset-0 bg-forest/50" />
-        <div
-          className="absolute inset-0"
-          style={{ boxShadow: 'inset 0 0 120px rgba(0,0,0,0.45)' }}
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 z-10">
-          <p className="font-display italic text-cream text-center drop-shadow-lg" style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>
+      {/* Dog illustration section */}
+      <div className="relative py-20 flex flex-col items-center justify-center" style={{ backgroundColor: 'hsl(37, 33%, 92%)' }}>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url('/images/bg-cream.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="relative z-10 flex flex-col items-center">
+          <img
+            src={dogMartini}
+            alt="Dog in a martini glass"
+            className="w-[280px] md:w-[340px] mb-8"
+          />
+          <p className="font-display italic text-ink text-center" style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}>
             See you there
           </p>
-          <p className="font-heading text-gold text-[10px] tracking-[0.35em] mt-3 drop-shadow-md">
+          <p className="font-heading text-gold text-[10px] tracking-[0.35em] mt-3">
             VANESSA & BRIAN · JULY 11, 2026
           </p>
         </div>
