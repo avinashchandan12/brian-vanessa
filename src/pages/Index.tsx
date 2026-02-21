@@ -1,13 +1,55 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect, useCallback } from 'react';
+import EnvelopeAnimation from '@/components/EnvelopeAnimation';
+import HeroSection from '@/components/HeroSection';
+import OurStorySection from '@/components/OurStorySection';
+import DetailsSection from '@/components/DetailsSection';
+import HotelsSection from '@/components/HotelsSection';
+import GalleryBreak from '@/components/GalleryBreak';
+import RSVPSection from '@/components/RSVPSection';
+import FooterSection from '@/components/FooterSection';
+import MusicPlayer from '@/components/MusicPlayer';
 
 const Index = () => {
+  const [showEnvelope, setShowEnvelope] = useState(true);
+
+  const handleEnvelopeComplete = useCallback(() => {
+    setShowEnvelope(false);
+  }, []);
+
+  // IntersectionObserver for fade-in sections
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    const elements = document.querySelectorAll('.fade-section, .stagger-children');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [showEnvelope]);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      {showEnvelope && <EnvelopeAnimation onComplete={handleEnvelopeComplete} />}
+
+      <main className={showEnvelope ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}>
+        <HeroSection />
+        <OurStorySection />
+        <DetailsSection />
+        <HotelsSection />
+        <GalleryBreak />
+        <RSVPSection />
+        <FooterSection />
+        <MusicPlayer />
+      </main>
+    </>
   );
 };
 
