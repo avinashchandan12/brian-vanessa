@@ -1,11 +1,9 @@
-import { Church, Wine, UtensilsCrossed, Music, PartyPopper } from 'lucide-react';
+import { Church, Wine, UtensilsCrossed } from 'lucide-react';
 
 const scheduleEvents = [
   { time: '5:45 PM', event: 'Ceremony Begins', description: 'Guests arrive and take their seats under the open sky', icon: Church },
   { time: '6:45 PM', event: 'Cocktail Hour', description: 'Refreshments and mingling in the garden courtyard', icon: Wine },
   { time: '8:00 PM', event: 'Reception Dinner', description: 'A buffet inspired by international cuisine', icon: UtensilsCrossed },
-  { time: '9:30 PM', event: 'Dancing & Celebration', description: 'Live music and dancing beneath the stars', icon: Music },
-  { time: '1:00 AM', event: 'Afterparty', description: 'Surprise', icon: PartyPopper },
 ];
 
 const ScheduleSection = () => {
