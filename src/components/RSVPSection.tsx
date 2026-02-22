@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 
 const RSVPSection = () => {
   const [attending, setAttending] = useState<'yes' | 'no' | null>(null);
   const [guestCount, setGuestCount] = useState(0);
   const [guestNames, setGuestNames] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
 
   const handleGuestCountChange = (count: number) => {
@@ -12,9 +15,25 @@ const RSVPSection = () => {
     setGuestNames(Array(count).fill(''));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.name || !attending) return;
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from('rsvps').insert({
+        name: formData.name.trim(),
+        phone: formData.phone.trim() || null,
+        email: formData.email.trim() || null,
+        message: formData.message.trim() || null,
+        attending: attending === 'yes',
+        guest_names: guestNames.filter(n => n.trim()),
+      });
+      if (error) throw error;
+      setSubmitted(true);
+    } catch {
+      toast({ title: 'Something went wrong', description: 'Please try again.', variant: 'destructive' });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -39,11 +58,16 @@ const RSVPSection = () => {
         <div className="absolute inset-0 opacity-15" style={{ backgroundImage: `url('/images/bg-cream.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div className="relative z-10 max-w-md mx-auto px-8 py-16 lg:py-24">
           {submitted ? (
-            <div className="text-center fade-section visible">
-              <p className="font-display italic text-forest" style={{ fontSize: 32 }}>
-                We can't wait to celebrate with you
+            <div className="text-center py-16">
+              <p className="font-display italic text-forest" style={{ fontSize: 'clamp(28px, 4vw, 40px)' }}>
+                Thank You!
               </p>
-              <p className="text-gold text-xl mt-4">✦</p>
+              <p className="font-body font-light text-forest/80 text-[15px] mt-4 leading-relaxed max-w-sm mx-auto">
+                {attending === 'yes'
+                  ? "We can't wait to celebrate with you!"
+                  : "We'll miss you, but thank you for letting us know."}
+              </p>
+              <p className="text-gold text-xl mt-6">✦</p>
             </div>
           ) : (
             <div className="stagger-children visible">
@@ -172,9 +196,10 @@ const RSVPSection = () => {
 
                   <button
                     onClick={handleSubmit}
-                    className="w-full bg-warm-brown text-cream font-heading text-sm tracking-[0.2em] uppercase py-4 hover:bg-forest transition-colors"
+                    disabled={submitting}
+                    className="w-full bg-warm-brown text-cream font-heading text-sm tracking-[0.2em] uppercase py-4 hover:bg-forest transition-colors disabled:opacity-50"
                   >
-                    SUBMIT RSVP
+                    {submitting ? 'SUBMITTING...' : 'SUBMIT RSVP'}
                   </button>
                 </>
               )}
