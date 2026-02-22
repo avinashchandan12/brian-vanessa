@@ -71,7 +71,7 @@ const RSVPSection = () => {
             </div>
           ) : (
             <div className="stagger-children visible">
-              <h3 className="font-heading text-forest text-2xl tracking-[0.15em] text-center mb-2">RSVP</h3>
+              <h3 className="section-heading text-forest" style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}>RSVP</h3>
               <p className="font-body font-light text-forest/80 text-[13px] text-center mb-4 leading-relaxed max-w-sm mx-auto">
                 We would be honored to celebrate with you. Please let us know if you can attend by filling
                 out the form below. Your presence would mean the world to us as we begin this new chapter together.
