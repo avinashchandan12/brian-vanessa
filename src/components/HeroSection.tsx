@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, min: 0, sec: 0 });
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [flipped, setFlipped] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
@@ -22,11 +23,21 @@ const HeroSection = () => {
     return () => clearInterval(i);
   }, []);
 
+  // Preload image, then trigger flip
   useEffect(() => {
-    const t1 = setTimeout(() => setFlipped(true), 600);
-    const t2 = setTimeout(() => setShowContent(true), 1400);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const img = new Image();
+    img.src = '/images/couple1.jpeg';
+    img.onload = () => setImageLoaded(true);
+    // fallback in case onload doesn't fire (cached)
+    if (img.complete) setImageLoaded(true);
   }, []);
+
+  useEffect(() => {
+    if (!imageLoaded) return;
+    const t1 = setTimeout(() => setFlipped(true), 300);
+    const t2 = setTimeout(() => setShowContent(true), 1200);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [imageLoaded]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
