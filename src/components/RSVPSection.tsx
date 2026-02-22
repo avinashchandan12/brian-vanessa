@@ -72,11 +72,11 @@ const RSVPSection = () => {
 
           <div className="stagger-children visible">
               <h3 className="section-heading text-forest text-center text-5xl" style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}>RSVP</h3>
-              <p className="font-body font-light text-forest/80 text-[13px] text-center mb-4 leading-relaxed max-w-sm mx-auto">
+              <p className="font-body font-light text-forest/80 text-center mb-4 leading-relaxed max-w-sm mx-auto text-lg">
                 We would be honored to celebrate with you. Please let us know if you can attend by filling
                 out the form below. Your presence would mean the world to us as we begin this new chapter together.
               </p>
-              <p className="font-body font-light text-forest/50 text-[12px] text-center mb-4 italic">
+              <p className="font-body font-light text-forest/50 text-center mb-4 italic text-base">
                 Please submit a separate form for each guest who will be attending.
               </p>
               <p className="font-heading text-gold text-[10px] tracking-[0.2em] text-center mb-10">
