@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, min: 0, sec: 0 });
   const [flipped, setFlipped] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     const target = new Date('2026-07-11T17:45:00').getTime();
@@ -22,8 +23,9 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    const t = setTimeout(() => setFlipped(true), 600);
-    return () => clearTimeout(t);
+    const t1 = setTimeout(() => setFlipped(true), 600);
+    const t2 = setTimeout(() => setShowContent(true), 1400);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   const scrollTo = (id: string) => {
@@ -32,7 +34,7 @@ const HeroSection = () => {
 
   return (
     <section className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left panel - photo with flip reveal */}
+      {/* Left panel - photo with envelope-style flip (bottom to top) */}
       <div className="relative w-full lg:w-[60%] min-h-[60vh] lg:min-h-screen overflow-hidden"
         style={{ perspective: '1500px' }}
       >
@@ -41,8 +43,8 @@ const HeroSection = () => {
           style={{
             transformStyle: 'preserve-3d',
             transition: 'transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)',
-            transform: flipped ? 'rotateY(0deg)' : 'rotateY(90deg)',
-            transformOrigin: 'left center',
+            transform: flipped ? 'rotateX(0deg)' : 'rotateX(-90deg)',
+            transformOrigin: 'bottom center',
           }}
         >
           <div
@@ -77,25 +79,63 @@ const HeroSection = () => {
           className="absolute inset-0 opacity-20"
           style={{ backgroundImage: `url('/images/bg-cream.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
         />
-        <div className="relative z-10 text-center px-8 py-16 stagger-children visible">
+        <div className="relative z-10 text-center px-8 py-16">
+          {/* Vanessa */}
           <h1
-            className="font-display italic font-light text-ink"
-            style={{ fontSize: 'clamp(48px, 8vw, 96px)', lineHeight: 1.1 }}
+            className="font-display italic font-light text-ink transition-all duration-700 ease-out"
+            style={{
+              fontSize: 'clamp(48px, 8vw, 96px)',
+              lineHeight: 1.1,
+              opacity: showContent ? 1 : 0,
+              transform: showContent ? 'translateY(0)' : 'translateY(30px)',
+            }}
           >
             Vanessa
           </h1>
+          {/* & Brian */}
           <p
-            className="font-display italic font-light text-warm-brown mt-1"
-            style={{ fontSize: 'clamp(36px, 6vw, 72px)', lineHeight: 1.1 }}
+            className="font-display italic font-light text-warm-brown mt-1 transition-all duration-700 ease-out"
+            style={{
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              lineHeight: 1.1,
+              opacity: showContent ? 1 : 0,
+              transform: showContent ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '150ms',
+            }}
           >
             & Brian
           </p>
-          <p className="cinzel-spaced text-ink text-xs mt-6">ARE GETTING MARRIED</p>
+          {/* ARE GETTING MARRIED */}
+          <p
+            className="cinzel-spaced text-ink text-xs mt-6 transition-all duration-700 ease-out"
+            style={{
+              opacity: showContent ? 1 : 0,
+              transform: showContent ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '300ms',
+            }}
+          >
+            ARE GETTING MARRIED
+          </p>
 
-          <div className="w-12 h-px bg-parchment mx-auto my-8" />
+          {/* Divider */}
+          <div
+            className="w-12 h-px bg-parchment mx-auto my-8 transition-all duration-700 ease-out"
+            style={{
+              opacity: showContent ? 1 : 0,
+              transform: showContent ? 'scaleX(1)' : 'scaleX(0)',
+              transitionDelay: '450ms',
+            }}
+          />
 
           {/* Countdown */}
-          <div className="flex gap-4 justify-center mb-10">
+          <div
+            className="flex gap-4 justify-center mb-10 transition-all duration-700 ease-out"
+            style={{
+              opacity: showContent ? 1 : 0,
+              transform: showContent ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '550ms',
+            }}
+          >
             {Object.entries(timeLeft).map(([label, val]) => (
               <div
                 key={label}
@@ -114,13 +154,23 @@ const HeroSection = () => {
           <div className="flex flex-col items-center gap-2 w-[200px] mx-auto">
             <button
               onClick={() => scrollTo('rsvp')}
-              className="w-full bg-dusty-rose text-cream font-heading text-xs tracking-[0.2em] uppercase py-3 hover:bg-warm-brown transition-colors"
+              className="w-full bg-dusty-rose text-cream font-heading text-xs tracking-[0.2em] uppercase py-3 hover:bg-warm-brown transition-all duration-700 ease-out"
+              style={{
+                opacity: showContent ? 1 : 0,
+                transform: showContent ? 'translateY(0)' : 'translateY(30px)',
+                transitionDelay: '700ms',
+              }}
             >
               RSVP
             </button>
             <button
               onClick={() => scrollTo('details')}
-              className="w-full bg-dusty-rose text-cream font-heading text-xs tracking-[0.2em] uppercase py-3 hover:bg-warm-brown transition-colors"
+              className="w-full bg-dusty-rose text-cream font-heading text-xs tracking-[0.2em] uppercase py-3 hover:bg-warm-brown transition-all duration-700 ease-out"
+              style={{
+                opacity: showContent ? 1 : 0,
+                transform: showContent ? 'translateY(0)' : 'translateY(30px)',
+                transitionDelay: '850ms',
+              }}
             >
               Details
             </button>
